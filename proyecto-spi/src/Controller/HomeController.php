@@ -14,11 +14,14 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
+
+        //Esto iria en LOGIN
+            setcookie("user", "Erick Saúl Guzmán Ramos", time() + 3600);
+            setcookie("rol", "Bodeguero", time() + 3600);
+        // // // // // // // //
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'Permisos' => ['Permiso1', 'Permiso2', 'Permiso3', 'Permiso4'], 
-            'usuario' => 'Erick Saúl Guzmán Ramos', 
-            'rol' => 'RolAssigned'
+            'controller_name' => 'HomeController'
         ]);
     }
 }
