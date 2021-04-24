@@ -1,16 +1,96 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReporteController!{% endblock %}
+{% block title %}{{ page_title }}{% endblock %}
 
 {% block body %}
 
 <div id="content-wrapper" class="d-flex flex-column">
-    <h1>Hello {{ controller_name }}!</h1>
+    <h1 class="mx-auto pb-2">{{ page_title }}</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/proyecto-spi/src/Controller/ReporteController.php'|file_link(0) }}">src/Controller/ReporteController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/proyecto-spi/templates/reporte/index.html.twig'|file_link(0) }}">templates/reporte/index.html.twig</a></code></li>
-    </ul>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Generar reporte
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-indigo"><i class="fas fa-archive"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text pl-2">ALMACEN</span>
+                            <span class="info-box-number"></span>
+                            <div class="text-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn-xs btn-default">
+                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    </button>
+                                    <button type="button" class="btn-xs btn-default">
+                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> IMPR</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-box-icon bg-purple"><i class="fas fa-exchange-alt"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text pl-2">MOVIMIENTOS</span>
+                            <span class="info-box-number"></span>
+                            <div class="text-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn-xs btn-default">
+                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    </button>
+                                    <button type="button" class="btn-xs btn-default">
+                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> IMPR</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-box-icon bg-pink"><i class="fas fa-book"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text pl-2">ESTADOS</span>
+                            <span class="info-box-number"></span>
+                            <div class="text-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn-xs btn-default">
+                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    </button>
+                                    <button type="button" class="btn-xs btn-default">
+                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> IMPR</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-box-icon bg-maroon"><i class="far fa-files-o"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text pl-2">REPORTES</span>
+                            <span class="info-box-number"></span>
+                            <div class="text-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn-xs btn-default">
+                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    </button>
+                                    <button type="button" class="btn-xs btn-default">
+                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> IMPR</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            
+        </div>
+    </div>
+
 </div>
 {% endblock %}

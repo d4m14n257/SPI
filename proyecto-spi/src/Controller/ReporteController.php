@@ -15,6 +15,8 @@ class ReporteController extends AbstractController
     {
         return $this->render('reporte/index.html.twig', [
             'controller_name' => 'ReporteController',
+            'page_title' => 'Generación de Reportes'
         ]);
     }
+
 }
