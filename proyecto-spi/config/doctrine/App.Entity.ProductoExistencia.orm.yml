@@ -1,0 +1,44 @@
+App\Entity\ProductoExistencia:
+    type: entity
+    table: ProductoExistencia
+    id:
+        id:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        cantidad:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+    manyToOne:
+        almacen:
+            targetEntity: App\Entity\Almacen
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: productos_en_existencia
+            joinColumns:
+                almacen_id:
+                    referencedColumnName: id_almacen
+            orphanRemoval: false
+        producto:
+            targetEntity: App\Entity\Producto
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: productos_en_existencia
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id_producto
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,67 @@
+App\Entity\Ubicacion:
+    type: entity
+    table: Ubicacion
+    id:
+        id_ubicacion:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        calle:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        numero:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        colonia:
+            type: string
+            scale: 0
+            length: 127
+            unique: false
+            nullable: false
+            precision: 0
+        cp:
+            type: string
+            scale: 0
+            length: 5
+            unique: false
+            nullable: false
+            precision: 0
+        municipio:
+            type: string
+            scale: 0
+            length: 127
+            unique: false
+            nullable: false
+            precision: 0
+        localidad:
+            type: string
+            scale: 0
+            length: 127
+            unique: false
+            nullable: false
+            precision: 0
+    oneToMany:
+        almacenes:
+            targetEntity: App\Entity\Almacen
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: ubicacion
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    lifecycleCallbacks: {  }

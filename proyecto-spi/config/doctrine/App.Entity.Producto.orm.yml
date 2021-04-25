@@ -1,0 +1,114 @@
+App\Entity\Producto:
+    type: entity
+    table: Producto
+    id:
+        id_producto:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        tipo_producto:
+            type: string
+            scale: 0
+            length: 63
+            unique: false
+            nullable: false
+            precision: 0
+        nombre:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        folio:
+            type: string
+            scale: 0
+            length: 15
+            unique: false
+            nullable: false
+            precision: 0
+        unidad:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: true
+            precision: 0
+        descripcion_insumo:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+        marca:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: true
+            precision: 0
+        modelo:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: true
+            precision: 0
+        numero_serie:
+            type: string
+            scale: 0
+            length: 31
+            unique: false
+            nullable: true
+            precision: 0
+        numero_motor_maquinaria:
+            type: string
+            scale: 0
+            length: 31
+            unique: false
+            nullable: true
+            precision: 0
+        oculto:
+            type: boolean
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+    oneToMany:
+        productos_comprados:
+            targetEntity: App\Entity\ProductoComprado
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: producto
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+        productos_en_movimientos:
+            targetEntity: App\Entity\ProductoMovimiento
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: producto
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+        productos_en_existencia:
+            targetEntity: App\Entity\ProductoExistencia
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: producto
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    lifecycleCallbacks: {  }

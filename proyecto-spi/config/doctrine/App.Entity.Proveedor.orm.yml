@@ -1,0 +1,54 @@
+App\Entity\Proveedor:
+    type: entity
+    table: Proveedor
+    id:
+        id_proveedor:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        nombre:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        rfc:
+            type: string
+            scale: 0
+            length: 13
+            unique: false
+            nullable: false
+            precision: 0
+        telefono:
+            type: string
+            scale: 0
+            length: 10
+            unique: false
+            nullable: true
+            precision: 0
+        oculto:
+            type: boolean
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+    oneToMany:
+        compras:
+            targetEntity: App\Entity\Compra
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: proveedor
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    lifecycleCallbacks: {  }

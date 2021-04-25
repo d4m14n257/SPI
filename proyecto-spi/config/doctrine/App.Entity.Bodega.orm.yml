@@ -1,0 +1,13 @@
+App\Entity\Bodega:
+    type: entity
+    table: Bodega
+    id: {  }
+    fields:
+        telefono:
+            type: string
+            scale: 0
+            length: 10
+            unique: false
+            nullable: true
+            precision: 0
+    lifecycleCallbacks: {  }

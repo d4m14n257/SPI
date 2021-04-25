@@ -1,0 +1,41 @@
+App\Entity\Obra:
+    type: entity
+    table: Obra
+    id: {  }
+    fields:
+        fecha_entrega:
+            type: date
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        fecha_inicio:
+            type: date
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        dependencia_contratos:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+        dependencia_ejecutora:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+        contrato_proyecto:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+    lifecycleCallbacks: {  }
