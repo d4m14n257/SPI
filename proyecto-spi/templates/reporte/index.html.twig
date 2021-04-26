@@ -5,92 +5,113 @@
 {% block body %}
 
 <div id="content-wrapper" class="d-flex flex-column">
+    {% set RENDER_FORM = "" %}
     <h1 class="mx-auto pb-2">{{ page_title }}</h1>
-
     <div class="row">
-        <div class="col-md-4">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Generar reporte
-                    </h3>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-indigo">
+                <div class="inner">
+                    <h3>Almacen</h3>
                 </div>
-                <div class="card-body">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-indigo"><i class="fas fa-archive"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text pl-2">ALMACEN</span>
-                            <span class="info-box-number"></span>
-                            <div class="text-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn-xs btn-default">
-                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> PDF</a>
-                                    </button>
-                                    <button type="button" class="btn-xs btn-default">
-                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> IMPR</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-box">
-                        <span class="info-box-icon bg-purple"><i class="fas fa-exchange-alt"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text pl-2">MOVIMIENTOS</span>
-                            <span class="info-box-number"></span>
-                            <div class="text-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn-xs btn-default">
-                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> PDF</a>
-                                    </button>
-                                    <button type="button" class="btn-xs btn-default">
-                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> IMPR</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-box">
-                        <span class="info-box-icon bg-pink"><i class="fas fa-book"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text pl-2">ESTADOS</span>
-                            <span class="info-box-number"></span>
-                            <div class="text-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn-xs btn-default">
-                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> PDF</a>
-                                    </button>
-                                    <button type="button" class="btn-xs btn-default">
-                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> IMPR</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-box">
-                        <span class="info-box-icon bg-maroon"><i class="far fa-files-o"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text pl-2">REPORTES</span>
-                            <span class="info-box-number"></span>
-                            <div class="text-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn-xs btn-default">
-                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> PDF</a>
-                                    </button>
-                                    <button type="button" class="btn-xs btn-default">
-                                        <a href="#" class="text-black"><i class="fas fa-file-pdf"></i> IMPR</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="icon" style="color:white; opacity:0.3;">
+                    <i class="fas fa-archive"></i>
+                </div>
+                <a href="" class="small-box-footer btn-lg" >
+                   <i class="fas fa-arrow-circle-down"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-purple">
+                <div class="inner">
+                    <h3>Movimientos</h3>
+                </div>
+                <div class="icon" style="color:white; opacity:0.3;">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <a href="" class="small-box-footer btn-lg" >
+                   <i class="fas fa-arrow-circle-down"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-maroon">
+                <div class="inner">
+                    <h3>Compras</h3>
+                </div>
+                <div class="icon" style="color:white; opacity:0.3;">
+                    <i class="fas fa-money"></i>
+                </div>
+                <a href="#" class="small-box-footer btn-lg" >
+                   <i class="fas fa-arrow-circle-down"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-olive">
+                <div class="inner">
+                    <h3>Formatos</h3>
+                </div>
+                <div class="icon" style="color:white; opacity:0.3;">
+                    <i class="far fa-files-o"></i>
+                </div>
+                <div class="dropdown small-box-footer">
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownFormatos" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
+                        <i class="fas fa-arrow-circle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownFormatos">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            
+    </div>
+    <div class="row">
+        <div class="">
+            {{ render(controller('\\App\\Controller\\ReporteController::form_report')) }}
         </div>
     </div>
-
 </div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/chart.min.js" integrity="sha512-BqNYFBAzGfZDnIWSAEGZSD/QFKeVxms2dIBPfw11gZubWwKUjEgmFUtUls8vZ6xTRZN/jaXGHD/ZaxD9+fDo0A==" crossorigin="anonymous"></script>
+<script>
+
+    //ELEMENTOS QUE SE OBTENDRIAN POR MEDIO DE LOS CONTROLADORES DEL SISTEMA
+
+    const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+      ];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Numero de Obras',
+            data: [4, 6, 3, 7, 10, 8, 10],
+            fill: true,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.3
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+    };
+
+    var obrasChart = new Chart(
+        document.getElementById('obrasChart'),
+        config
+    );
+    var obrasChart2 = new Chart(
+        document.getElementById('obrasChart2'),
+        config
+    );
+    
+</script> -->
+
 {% endblock %}

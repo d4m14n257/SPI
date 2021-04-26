@@ -1,0 +1,79 @@
+App\Entity\Almacen:
+    type: entity
+    table: Almacen
+    inheritanceType: JOINED
+    discriminatorColumn:
+        name: tipo
+        type: string
+        length: 255
+        columnDefinition: null
+        fieldName: tipo
+    discriminatorMap:
+        obra: App\Entity\Obra
+        bodega: App\Entity\Bodega
+    id:
+        id_almacen:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    oneToMany:
+        compras:
+            targetEntity: App\Entity\Compra
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: almacen
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+        productos_en_existencia:
+            targetEntity: App\Entity\ProductoExistencia
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: almacen
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+        movimientos_almacen_origen:
+            targetEntity: App\Entity\MovimientoAlmacen
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: almacen
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+        movimientos_almacen_destino:
+            targetEntity: App\Entity\MovimientoAlmacen
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: almacen
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    manyToOne:
+        ubicacion:
+            targetEntity: App\Entity\Ubicacion
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: almacenes
+            joinColumns:
+                ubicacion_id:
+                    referencedColumnName: id_ubicacion
+            orphanRemoval: false
+        usuario:
+            targetEntity: App\Entity\Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: almacenes
+            joinColumns:
+                usuario_id:
+                    referencedColumnName: id_usuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

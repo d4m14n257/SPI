@@ -1,0 +1,63 @@
+App\Entity\MovimientoAlmacen:
+    type: entity
+    table: MovimientoAlmacen
+    id:
+        id_movimiento:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        fecha:
+            type: date
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+    oneToMany:
+        productos_en_movimiento:
+            targetEntity: App\Entity\ProductoMovimiento
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: movimiento_almacen
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    manyToOne:
+        almacen_destino:
+            targetEntity: App\Entity\Almacen
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: movimientos_almacen_origen
+            joinColumns:
+                almacen_destino_id:
+                    referencedColumnName: id_almacen
+            orphanRemoval: false
+        almacen_origen:
+            targetEntity: App\Entity\Almacen
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: movimientos_almacen_destino
+            joinColumns:
+                almacen_origen_id:
+                    referencedColumnName: id_almacen
+            orphanRemoval: false
+        usuario:
+            targetEntity: App\Entity\Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: movimientos_almacenes
+            joinColumns:
+                usuario_id:
+                    referencedColumnName: id_usuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

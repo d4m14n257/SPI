@@ -4,7 +4,78 @@
 
 {% block body %}
 
+{% set colors = ["primary"] %}
+
 <div id="content-wrapper" class="d-flex flex-column">
     <h1 class="mx-auto pb-2">{{ page_title }}</h1>
+
+    <div class="row">
+        {% if Obras_Activas|length > 0 %}
+            <section class="col-md-4">
+        {% endif %}
+        {% set act = 0 %}
+        {% set last = 0 %}
+        {% for i in 0..(Obras_Activas|length - 1) %}
+
+            {% if act >= Obras_Activas|length %}
+                {% set last = last + 1 %}
+                {% set act = last %}
+                </section>
+                <section class="col-md-4">
+            {% endif %}
+            <div class=""> 
+                <div class="card card-{{ random(colors) }} shadow-lg" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
+                    <div class="card-header">
+                        <h3 class="card-title pl-3 pt-md-1"> Nombre Obra {{ act }}</h3>
+                        <div class="card-tools">
+                            <span style="font-size: large;">
+                                <i class="fas fa-tools"></i>
+                            </span>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <dl>
+                            <dt>Descripción</dt>
+                            <dd>Descipción Obra {{ act }} (Pendiente agregar parametro description a la entidad)</dd>
+                        </dl>
+                        <div class="row">
+                            <section class="col">
+                                <b>Fecha Inicio</b>
+                                <p>dd/mm/aaaa</p>
+                            </section>
+                            <section class="col">
+                                <b>Fecha Fin</b>
+                                <p>dd/mm/aaaa</p>
+                            </section>
+                            <section class="col">
+                                <b>Usuario asignado</b>
+                                <p>Nombre y apellidos usuario</p>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="card-footer row">
+                        <div class="float-left">
+                            <a href="{{ path('obr-view-det', { 'Obra_ID': Obras_Activas[act].getIdAlmacen ?: "none" }) }}">
+                                <button type="button" class="btn btn-block">
+                                    <i class="fa fa-eye"></i>
+                                    Ver detalles 
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% set act = act + 3 %}
+    
+        {% endfor %}
+    </div>
+
 </div>
+
 {% endblock %}
+
+

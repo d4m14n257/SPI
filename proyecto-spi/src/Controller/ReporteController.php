@@ -13,10 +13,15 @@ class ReporteController extends AbstractController
      */
     public function index(): Response
     {
+        // if($view === null) $view = "default";
         return $this->render('reporte/index.html.twig', [
             'controller_name' => 'ReporteController',
             'page_title' => 'Generación de Reportes'
         ]);
+    }
+
+    public function form_report(): Response{
+        return $this->render('reporte/form_report.html.twig',[]);
     }
 
 }

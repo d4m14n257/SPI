@@ -1,0 +1,86 @@
+App\Entity\Usuario:
+    type: entity
+    table: Usuario
+    id:
+        id_usuario:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        nombre:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        apellidos:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        telefono:
+            type: string
+            scale: 0
+            length: 10
+            unique: false
+            nullable: true
+            precision: 0
+        ine:
+            type: string
+            scale: 0
+            length: 18
+            unique: false
+            nullable: true
+            precision: 0
+        password:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        rol:
+            type: string
+            scale: 0
+            length: 20
+            unique: false
+            nullable: false
+            precision: 0
+    oneToMany:
+        compras:
+            targetEntity: App\Entity\Compra
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: usuario
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+        almacenes:
+            targetEntity: App\Entity\Almacen
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: usuario
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+        movimientos_almacenes:
+            targetEntity: App\Entity\MovimientoAlmacen
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: usuario
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    lifecycleCallbacks: {  }

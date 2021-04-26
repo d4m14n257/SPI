@@ -131,7 +131,7 @@ $container->loadFromExtension('twig', [
                         'icon' => 'fa-home',
                         'text' => 'Inicio',
                         'path' => 'home',
-                        'color' => 'bg-primary',
+                        'color' => 'bg-indigo',
                         'description' => 'Página de inicio del SPI'
                     ],
                     [
@@ -145,56 +145,56 @@ $container->loadFromExtension('twig', [
                         'icon' => 'fa-history',
                         'text' => 'Históricos',
                         'path' => 'historico',
-                        'color' => 'bg-primary',
+                        'color' => 'bg-lightblue',
                         'description' => 'Panel de acceso a registros históricos'
                     ],
                     [
                         'icon' => 'fa-users',
                         'text' => 'Usuarios',
                         'path' => 'usuario',
-                        'color' => 'bg-primary',
+                        'color' => 'bg-pink',
                         'description' => 'Panel de administración de usuarios'
                     ],
                     [
                         'icon' => 'fa-warehouse',
                         'text' => 'Bodegas',
                         'path' => 'bodega',
-                        'color' => 'bg-primary',
+                        'color' => 'bg-purple',
                         'description' => 'Bodegas registradas en el sistema'
                     ],
                     [
                         'icon' => 'fa-hard-hat',
                         'text' => 'Obras',
                         'path' => 'obra',
-                        'color' => 'bg-primary',
+                        'color' => 'bg-olive',
                         'description' => 'Obras activas registradas'
                     ],
                     [
                         'icon' => 'fa-exchange-alt',
                         'text' => 'Movimientos',
                         'path' => 'movimiento',
-                        'color' => 'bg-primary',
+                        'color' => 'bg-teal',
                         'description' => 'Movimientos activos registrados'
                     ],
                     [
                         'icon' => 'fa-cubes',
                         'text' => 'Productos',
                         'path' => 'producto',
-                        'color' => 'bg-primary',
+                        'color' => 'bg-orange',
                         'description' => 'Lista de productos y materiales'
                     ],
                     [
                         'icon' => 'fa-id-card-alt',
                         'text' => 'Proveedores',
                         'path' => 'proveedor',
-                        'color' => 'bg-primary',
+                        'color' => 'bg-danger',
                         'description' => 'Lista de proveedores registrados'
                     ],
                     [
                         'icon' => 'fa-money-bill-wave-alt',
                         'text' => 'Compras',
                         'path' => 'compra',
-                        'color' => 'bg-primary',
+                        'color' => 'bg-gray-dark',
                         'description' => 'Compras realizadas'
                     ]
                 ]

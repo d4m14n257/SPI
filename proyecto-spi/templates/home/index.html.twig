@@ -28,12 +28,12 @@
                     <div class="col-lg-3 col-6 mx-auto">
                         <div class="small-box color-palette {{ subseccion.color }}">
                             <div class="inner">
-                                <h3>{{ subseccion.text }}</h3>
+                                <h3 class="text-white">{{ subseccion.text }}</h3>
 
-                                <p>{{ subseccion.description }}</p>
+                                <!-- <p>{{ subseccion.description }}</p> -->
                             </div>
                             <div class="icon">
-                                <i class="fas {{ subseccion.icon }}"></i>
+                                <i class="fas {{ subseccion.icon }}" style="color:white; opacity:0.3;"></i>
                             </div>
                             <a href="{{ path(subseccion.path) }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
                         </div>
@@ -43,14 +43,14 @@
                 <div class="col-lg-3 col-6 mx-auto">
                     <div class="small-box color-palette {{ seccion.color }}">
                         <div class="inner">
-                            <h3>{{ seccion.text }}</h3>
+                            <h3 class="text-white">{{ seccion.text }}</h3>
 
-                            <p>{{ seccion.description }}</p>
+                            <!-- <p>{{ seccion.description }}</p> -->
                         </div>
                         <div class="icon">
-                            <i class="fas {{ seccion.icon }}"></i>
+                            <i class="fas {{ seccion.icon }}" style="color:white; opacity:0.3;"></i>
                         </div>
-                        <a href="{{ path(seccion.path) }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ path(seccion.path) }}" class="small-box-footer"><i class="fas fa-arrow-circle-right" style="color:white;"></i></a>
                     </div>
                 </div>
             {% endif %}
