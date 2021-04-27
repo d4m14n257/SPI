@@ -1,0 +1,44 @@
+App\Entity\ProductoMovimiento:
+    type: entity
+    table: ProductoMovimiento
+    id:
+        id:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        cantidad:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+    manyToOne:
+        movimiento_almacen:
+            targetEntity: App\Entity\MovimientoAlmacen
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: productos_en_movimiento
+            joinColumns:
+                movimiento_almacen_id:
+                    referencedColumnName: id_movimiento
+            orphanRemoval: false
+        producto:
+            targetEntity: App\Entity\Producto
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: productos_en_movimiento
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id_producto
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

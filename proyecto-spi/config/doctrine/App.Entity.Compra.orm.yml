@@ -1,0 +1,92 @@
+App\Entity\Compra:
+    type: entity
+    table: Compra
+    id:
+        id_compra:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        tipo_pago:
+            type: string
+            scale: 0
+            length: 63
+            unique: false
+            nullable: false
+            precision: 0
+        num_factura:
+            type: string
+            scale: 0
+            length: 31
+            unique: false
+            nullable: false
+            precision: 0
+        num_requisicion:
+            type: string
+            scale: 0
+            length: 31
+            unique: false
+            nullable: false
+            precision: 0
+        tipo_compra:
+            type: string
+            scale: 0
+            length: 63
+            unique: false
+            nullable: false
+            precision: 0
+        imagen_CE:
+            type: blob
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            column: imagen_ce
+    oneToMany:
+        productos_comprados:
+            targetEntity: App\Entity\ProductoComprado
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: compra
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    manyToOne:
+        usuario:
+            targetEntity: App\Entity\Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: compras
+            joinColumns:
+                usuario_id:
+                    referencedColumnName: id_usuario
+            orphanRemoval: false
+        almacen:
+            targetEntity: App\Entity\Almacen
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: compras
+            joinColumns:
+                almacen_id:
+                    referencedColumnName: id_almacen
+            orphanRemoval: false
+        proveedor:
+            targetEntity: App\Entity\proveedor
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: compras
+            joinColumns:
+                proveedor_id:
+                    referencedColumnName: id_proveedor
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

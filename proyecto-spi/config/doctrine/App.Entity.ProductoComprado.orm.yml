@@ -1,0 +1,58 @@
+App\Entity\ProductoComprado:
+    type: entity
+    table: ProductoComprado
+    id:
+        id:
+            type: guid
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        cantidad:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        precio:
+            type: float
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        fecha:
+            type: date
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+    manyToOne:
+        compra:
+            targetEntity: App\Entity\Compra
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: productos_comprados
+            joinColumns:
+                compra_id:
+                    referencedColumnName: id_compra
+            orphanRemoval: false
+        producto:
+            targetEntity: App\Entity\Producto
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: productos_comprados
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id_producto
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

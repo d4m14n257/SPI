@@ -1,19 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ controller_name }}{% endblock %}
+{% block title %}{{ page_title }}{% endblock %}
 
 {% block body %}
 
 <div id="content-wrapper" class="d-flex flex-column">
-    <h1>Hello {{ controller_name }}!</h1>
+    <h1 class="mx-auto pb-2">{{ page_title }}</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/proyecto-spi/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/proyecto-spi/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-    <p>
-    
-    </p>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h5 class="m-0">Bienvenido {{ app.request.cookies.get('user') }}</h5>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">Ha iniciado sesión con el rol de {{ app.request.cookies.get('rol') }}</h6>
+
+            <p class="card-text">Texto de introducción o donde se indique alguna cosa xd</p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        {% set Permiso = app.request.cookies.get('rol') ?: "Default" %}
+
+        {% for seccion in Menus[Permiso]|slice(1, Menus[Permiso]|length) %}
+            {% if seccion.text is iterable %}
+                {% for subseccion in seccion.text %}
+                    <div class="col-lg-3 col-6 mx-auto">
+                        <div class="small-box color-palette {{ subseccion.color }}">
+                            <div class="inner">
+                                <h3>{{ subseccion.text }}</h3>
+
+                                <p>{{ subseccion.description }}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas {{ subseccion.icon }}"></i>
+                            </div>
+                            <a href="{{ path(subseccion.path) }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-lg-3 col-6 mx-auto">
+                    <div class="small-box color-palette {{ seccion.color }}">
+                        <div class="inner">
+                            <h3>{{ seccion.text }}</h3>
+
+                            <p>{{ seccion.description }}</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas {{ seccion.icon }}"></i>
+                        </div>
+                        <a href="{{ path(seccion.path) }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+    </div>
+
 </div>
 {% endblock %}
