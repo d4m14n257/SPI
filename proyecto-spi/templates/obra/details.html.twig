@@ -2,13 +2,28 @@
 
 {% block title %}{{ page_title }}{% endblock %}
 
+{% block javascripts %}
+
+<script>
+    $(document).ready(function() {
+        $('#obra').addClass('active');
+    } );
+</script>
+
+{% endblock %}
+
 {% block body %}
 
 <div id="content-wrapper" class="d-flex flex-column">
-    <h1 class="mx-auto pb-2"><strong>{{ page_title }}</strong> Nombre Obra {{ Obra_ID }}</h1>
-    
+    <h1 class="mx-auto pb-2"><strong>{{ page_title }}</strong>{{ Obra.getNombre }}</h1>
+
     <div class="container">
         <div class="row">
+            <div class="col-12 col-md-12 col-lg-8 pb-2 pl-4">
+                <a href="{{ path('obra') }}">
+                    <button class="btn btn-sm bg-primary"><i class="fa fa-arrow-left pr-2"></i>Regresar</button>
+                </a>
+            </div>
             <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
                 <div class="row">
                     <section class="col-6 col-sm-8">
@@ -20,7 +35,7 @@
                                     </span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Fecha Inicio</span>
-                                        <span class="info-box-number">dd/mm/aaa</span>
+                                        <span class="info-box-number">{{ Obra.getFechaInicio.format('D-d-m-Y') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -30,29 +45,9 @@
                                         <i class="far fa-calendar-times"></i>
                                     </span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Fecha Fin</span>
-                                        <span class="info-box-number">dd/mm/aaa</span>
+                                        <span class="info-box-text">Fecha Entrega</span>
+                                        <span class="info-box-number">{{ Obra.getFechaEntrega.format('D-d-m-Y') }}</span>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container pl-4 pr-4 pt-2 pb-2">
-                            <div class="progress">
-                                <div class="progress-bar bg-orange color-palette text-white" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                    Tiempo transcurrido de la obra
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="col-12 col-sm-4">
-                        <div class="">
-                            <div class="info-box bg-gradient-success">
-                                <span class="info-box-icon">
-                                    <i class="far fa-circle"></i>
-                                </span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Elemento</span>
-                                    <span class="info-box-number">Texto</span>
                                 </div>
                             </div>
                         </div>
@@ -66,13 +61,12 @@
                         <p class="text-muted justify-text">{{ Obra.getDependenciaEjecutora }}</p>
                         <h4>Contrato Proyecto</h4>
                         <p class="text-muted justify-text">{{ Obra.getContratoProyecto }}</p>
-                        <b>(Pendiente agregar parametro nombre a la entidad)</b>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
                 <h3 class="text-primary">Descripción </h3>
-                <p class="text-muted">Descipción Obra {{ Obra_ID }} (Pendiente agregar parametro description a la entidad)</p>
+                <p class="text-muted">{{ Obra.getDescripcion }}</p>
                 <div class="text-muted">
                     <h5 class="mt-5 text-muted">Ubicación</h5>
                     <p class="text-sm"><b>Calle:</b>
@@ -97,10 +91,10 @@
                 <div class="text-muted">
                     <h5 class="mt-5 text-muted">Usuario asignado</h5>
                     <p class="text-sm"> <b>Nombre: </b>
-                        <em>Usuario Nombre y apellidos</em>
+                        <em>{{ Obra.getUsuario.getNombre }} {{ Obra.getUsuario.getApellidos }}</em>
                     </p>
                     <p class="text-sm"><b>Rol: </b>
-                        <em>Usuario Rol</em>
+                        <em>{{ Obra.getUsuario.getRol }}</em>
                     </p>
                 </div>
 

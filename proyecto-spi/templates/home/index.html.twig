@@ -5,32 +5,22 @@
 {% block body %}
 
 <div id="content-wrapper" class="d-flex flex-column">
-    <h1 class="mx-auto pb-2">{{ page_title }}</h1>
-
-    <div class="card card-primary card-outline">
-        <div class="card-header">
-            <h5 class="m-0">Bienvenido {{ app.request.cookies.get('user') }}</h5>
+    <h1 class="mx-auto pb-2" style="font-size: 5em;">COCOVA<sub>SPI</sub></h1>
+    <!-- <div class="row">
+        <div class="col-12" style="position: relative;">
+            <img src="{{ asset('img/cocova.svg') }}" style="position: absolute; width: 30%; left: 50%; margin-right: -50%; transform: translate(-50%, 0);">     </img>
         </div>
-        <div class="card-body">
-            <h6 class="card-title">Ha iniciado sesión con el rol de {{ app.request.cookies.get('rol') }}</h6>
-
-            <p class="card-text">Texto de introducción o donde se indique alguna cosa xd</p>
-        </div>
-    </div>
-
+    </div> -->
     <div class="row">
-
-        {% set Permiso = app.request.cookies.get('rol') ?: "Default" %}
+    {% set Permiso = app.request.cookies.get('rol') ?: "Default" %}
 
         {% for seccion in Menus[Permiso]|slice(1, Menus[Permiso]|length) %}
             {% if seccion.text is iterable %}
                 {% for subseccion in seccion.text %}
-                    <div class="col-lg-3 col-6 mx-auto">
-                        <div class="small-box color-palette {{ subseccion.color }}">
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box color-palette bg-primary">
                             <div class="inner">
                                 <h3 class="text-white">{{ subseccion.text }}</h3>
-
-                                <!-- <p>{{ subseccion.description }}</p> -->
                             </div>
                             <div class="icon">
                                 <i class="fas {{ subseccion.icon }}" style="color:white; opacity:0.3;"></i>
@@ -40,12 +30,10 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <div class="col-lg-3 col-6 mx-auto">
-                    <div class="small-box color-palette {{ seccion.color }}">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box color-palette bg-primary">
                         <div class="inner">
                             <h3 class="text-white">{{ seccion.text }}</h3>
-
-                            <!-- <p>{{ seccion.description }}</p> -->
                         </div>
                         <div class="icon">
                             <i class="fas {{ seccion.icon }}" style="color:white; opacity:0.3;"></i>
@@ -55,8 +43,6 @@
                 </div>
             {% endif %}
         {% endfor %}
-        
     </div>
-
 </div>
 {% endblock %}

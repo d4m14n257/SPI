@@ -33,21 +33,21 @@ final class Version20210425005747 extends AbstractMigration
         $this->addSql('CREATE TABLE Ubicacion (id_ubicacion CHAR(36) NOT NULL COMMENT \'(DC2Type:guid)\', calle VARCHAR(255) NOT NULL, numero INT NOT NULL, colonia VARCHAR(127) NOT NULL, cp VARCHAR(5) NOT NULL, municipio VARCHAR(127) NOT NULL, localidad VARCHAR(127) NOT NULL, PRIMARY KEY(id_ubicacion)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE Usuario (id_usuario CHAR(36) NOT NULL COMMENT \'(DC2Type:guid)\', nombre VARCHAR(255) NOT NULL, apellidos VARCHAR(255) NOT NULL, telefono VARCHAR(10) DEFAULT NULL, ine VARCHAR(18) DEFAULT NULL, password VARCHAR(255) NOT NULL, rol VARCHAR(20) NOT NULL, PRIMARY KEY(id_usuario)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE Almacen ADD CONSTRAINT FK_1A0FEBCC57E759E8 FOREIGN KEY (ubicacion_id) REFERENCES Ubicacion (id_ubicacion)');
-        $this->addSql('ALTER TABLE Almacen ADD CONSTRAINT FK_1A0FEBCCDB38439E FOREIGN KEY (usuario_id) REFERENCES Usuario (id_usuario)');
+        $this->addSql('ALTER TABLE Almacen ADD CONSTRAINT FK_1A0FEBCCDB38439E FOREIGN KEY (usuario_id) REFERENCES Usuario (id_usuario) ON DELETE SET NULL');
         $this->addSql('ALTER TABLE Bodega ADD CONSTRAINT FK_2612F69B2F7B20 FOREIGN KEY (id_almacen) REFERENCES Almacen (id_almacen) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE Compra ADD CONSTRAINT FK_996D34C9DB38439E FOREIGN KEY (usuario_id) REFERENCES Usuario (id_usuario)');
+        $this->addSql('ALTER TABLE Compra ADD CONSTRAINT FK_996D34C9DB38439E FOREIGN KEY (usuario_id) REFERENCES Usuario (id_usuario) ON DELETE SET NULL');
         $this->addSql('ALTER TABLE Compra ADD CONSTRAINT FK_996D34C99C9C9E68 FOREIGN KEY (almacen_id) REFERENCES Almacen (id_almacen)');
-        $this->addSql('ALTER TABLE Compra ADD CONSTRAINT FK_996D34C9CB305D73 FOREIGN KEY (proveedor_id) REFERENCES Proveedor (id_proveedor)');
+        $this->addSql('ALTER TABLE Compra ADD CONSTRAINT FK_996D34C9CB305D73 FOREIGN KEY (proveedor_id) REFERENCES Proveedor (id_proveedor) ON DELETE SET NULL');
         $this->addSql('ALTER TABLE MovimientoAlmacen ADD CONSTRAINT FK_6FF55AD8C48E45E FOREIGN KEY (almacen_destino_id) REFERENCES Almacen (id_almacen)');
         $this->addSql('ALTER TABLE MovimientoAlmacen ADD CONSTRAINT FK_6FF55AD30032D1F FOREIGN KEY (almacen_origen_id) REFERENCES Almacen (id_almacen)');
-        $this->addSql('ALTER TABLE MovimientoAlmacen ADD CONSTRAINT FK_6FF55ADDB38439E FOREIGN KEY (usuario_id) REFERENCES Usuario (id_usuario)');
+        $this->addSql('ALTER TABLE MovimientoAlmacen ADD CONSTRAINT FK_6FF55ADDB38439E FOREIGN KEY (usuario_id) REFERENCES Usuario (id_usuario) ON DELETE SET NULL');
         $this->addSql('ALTER TABLE Obra ADD CONSTRAINT FK_8EDCC283B2F7B20 FOREIGN KEY (id_almacen) REFERENCES Almacen (id_almacen) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE ProductoComprado ADD CONSTRAINT FK_54771072F2E704D7 FOREIGN KEY (compra_id) REFERENCES Compra (id_compra)');
-        $this->addSql('ALTER TABLE ProductoComprado ADD CONSTRAINT FK_547710727645698E FOREIGN KEY (producto_id) REFERENCES Producto (id_producto)');
+        $this->addSql('ALTER TABLE ProductoComprado ADD CONSTRAINT FK_547710727645698E FOREIGN KEY (producto_id) REFERENCES Producto (id_producto) ON DELETE SET NULL');
         $this->addSql('ALTER TABLE ProductoExistencia ADD CONSTRAINT FK_FA8EDBFD9C9C9E68 FOREIGN KEY (almacen_id) REFERENCES Almacen (id_almacen)');
-        $this->addSql('ALTER TABLE ProductoExistencia ADD CONSTRAINT FK_FA8EDBFD7645698E FOREIGN KEY (producto_id) REFERENCES Producto (id_producto)');
+        $this->addSql('ALTER TABLE ProductoExistencia ADD CONSTRAINT FK_FA8EDBFD7645698E FOREIGN KEY (producto_id) REFERENCES Producto (id_producto) ON DELETE SET NULL');
         $this->addSql('ALTER TABLE ProductoMovimiento ADD CONSTRAINT FK_61E9BFAD24F8B546 FOREIGN KEY (movimiento_almacen_id) REFERENCES MovimientoAlmacen (id_movimiento)');
-        $this->addSql('ALTER TABLE ProductoMovimiento ADD CONSTRAINT FK_61E9BFAD7645698E FOREIGN KEY (producto_id) REFERENCES Producto (id_producto)');
+        $this->addSql('ALTER TABLE ProductoMovimiento ADD CONSTRAINT FK_61E9BFAD7645698E FOREIGN KEY (producto_id) REFERENCES Producto (id_producto) ON DELETE SET NULL');
     }
 
     public function down(Schema $schema) : void

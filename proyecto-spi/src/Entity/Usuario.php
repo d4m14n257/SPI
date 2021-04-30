@@ -24,6 +24,13 @@ class Usuario
     private $id_usuario;
 
     /**
+    * @var string
+    *
+    * @ORM\Column(name="username", type="string", length=63)
+    */
+    private $username;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255)
@@ -123,6 +130,11 @@ class Usuario
         $this->apellidos = $apellidos;
 
         return $this;
+    }
+
+    public function getNombreCompleto(): ?string
+    {
+        return $this->apellidos.' '.$this->nombre;
     }
 
     public function getTelefono(): ?string

@@ -2,80 +2,182 @@
 
 {% block title %}{{ page_title }}{% endblock %}
 
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
+{% endblock %}
+
 {% block body %}
 
-{% set colors = ["primary"] %}
-
 <div id="content-wrapper" class="d-flex flex-column">
+
     <h1 class="mx-auto pb-2">{{ page_title }}</h1>
 
-    <div class="row">
-        {% if Obras_Activas|length > 0 %}
-            <section class="col-md-4">
-        {% endif %}
-        {% set act = 0 %}
-        {% set last = 0 %}
-        {% for i in 0..(Obras_Activas|length - 1) %}
-
-            {% if act >= Obras_Activas|length %}
-                {% set last = last + 1 %}
-                {% set act = last %}
-                </section>
-                <section class="col-md-4">
-            {% endif %}
-            <div class=""> 
-                <div class="card card-{{ random(colors) }} shadow-lg" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
-                    <div class="card-header">
-                        <h3 class="card-title pl-3 pt-md-1"> Nombre Obra {{ act }}</h3>
-                        <div class="card-tools">
-                            <span style="font-size: large;">
-                                <i class="fas fa-tools"></i>
-                            </span>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <dl>
-                            <dt>Descripción</dt>
-                            <dd>Descipción Obra {{ act }} (Pendiente agregar parametro description a la entidad)</dd>
-                        </dl>
-                        <div class="row">
-                            <section class="col">
-                                <b>Fecha Inicio</b>
-                                <p>dd/mm/aaaa</p>
-                            </section>
-                            <section class="col">
-                                <b>Fecha Fin</b>
-                                <p>dd/mm/aaaa</p>
-                            </section>
-                            <section class="col">
-                                <b>Usuario asignado</b>
-                                <p>Nombre y apellidos usuario</p>
-                            </section>
-                        </div>
-                    </div>
-                    <div class="card-footer row">
-                        <div class="float-left">
-                            <a href="{{ path('obr-view-det', { 'Obra_ID': Obras_Activas[act].getIdAlmacen ?: "none" }) }}">
-                                <button type="button" class="btn btn-block">
-                                    <i class="fa fa-eye"></i>
-                                    Ver detalles 
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {% set act = act + 3 %}
-    
-        {% endfor %}
+    <div class="row pb-3">
+        <div class="col-12">
+            <button class="btn btn-sm bg-purple float-right" data-toggle="modal" data-target="#NuevaObra">
+                <i class="fa fa-plus-circle pr-1" aria-hidden="true"></i>Registrar Nueva Obra
+            </button>
+        </div>
     </div>
 
+    <!-- Modal Registro de Obra -->
+    <div class="modal fade" id="NuevaObra" data-backdrop="static" data-keyboard="false" tabindex="-1" 
+        aria-labelledby="labelNuevaObra" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="labelNuevaObra">Registrar Nueva Obra</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{ form_start(form) }}
+                    <div class="modal-body">
+                        <div class="row">
+                            {{ form_errors(form) }}
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                {{ form_row(form.Nombre) }}
+                            </div>
+                            <div class="col-4">
+                                {{ form_row(form.Usuario) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{ form_row(form.FechaInicio) }}
+                            </div>
+                            <div class="col">
+                                {{ form_row(form.FechaEntrega) }}
+                            </div>
+                        </div>
+                        {{ form_row(form.Descripcion) }}
+                        {{ form_row(form.DependenciaContratos) }}
+                        {{ form_row(form.DependenciaEjecutora) }}
+                        {{ form_row(form.ContratoProyecto) }}
+                        <div class="row mx-auto">
+                            <div class="col">
+                                <p class="h5">
+                                    Ubicación
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                {{ form_row(form.Ubicacion.Calle) }}
+                            </div>
+                            <div class="col-4">
+                                {{ form_row(form.Ubicacion.Numero) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                {{ form_row(form.Ubicacion.Colonia) }}
+                            </div>
+                            <div class="col-4">
+                                {{ form_row(form.Ubicacion.Cp) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                {{ form_row(form.Ubicacion.Localidad) }}
+                            </div>
+                            <div class="col-6">
+                                {{ form_row(form.Ubicacion.Municipio) }}
+                            </div>
+                        </div>
+                        </div>
+                    <div class="modal-footer">
+                        {{ form_row(form.Cancel) }}
+                        {{ form_row(form.save) }}
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {% if Obras_Activas is not empty %}
+
+        <table id="TablaObras" class="table table-bordered table-hover dataTable dtr-inline">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Entrega</th>
+                    <th>Usuario encargado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obra in Obras_Activas %}
+                    <tr>
+                        <td>{{ obra.getNombre }}</td>
+                        <td>{{ obra.getFechaInicio.format('D-d-m-Y') }}</td>
+                        <td>{{ obra.getFechaEntrega.format('D-d-m-Y') }}</td>
+                        <td>{{ obra.getUsuario.getNombre }}  {{ obra.getUsuario.getApellidos }}</td>
+                        <td class="text-right pr-5">
+                            <a href="{{ path('obr-view-det', { Obra_ID: obra.getIdAlmacen }) }}">
+                                <i class="fa fa-eye"></i>
+                                Detalles
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+    <div class="container pt-5" style="width: 100%;">
+        <div class="pt-5" style="position: relative; height: 100%; ">
+            <div class="h1 text-muted pt-5" style="position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); opacity:0.2;">
+                <p class="pt-5 mx-auto" style="user-select: none;">NO HAY OBRAS REGISTRADAS</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
 </div>
 
 {% endblock %}
 
+{% block javascripts %}
 
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('js/form_validations.js') }}"></script>
+
+<script>
+$(document).ready(function() {
+	
+    $('#NuevaObra').on('hidden.bs.modal', function(e){
+        $(this).find('[name=new_obra]')[0].reset();
+    });
+
+    $('#TablaObras').DataTable({
+        "paging": true,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "responsive": true,
+        "lengthChange": false, 
+        "autoWidth": false
+    });
+
+});
+</script>
+
+{% endblock %}

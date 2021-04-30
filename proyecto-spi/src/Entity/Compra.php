@@ -88,7 +88,7 @@ class Compra
     /**
      * @var \App\Entity\Proveedor
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\proveedor", inversedBy="compras")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Proveedor", inversedBy="compras")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="proveedor_id", referencedColumnName="id_proveedor")
      * })

@@ -26,7 +26,7 @@ class HomeController extends AbstractController
     public function login(): Response
     {
          //Esto iria en LOGIN
-         setcookie("user", "Erick", time() + 3600);
+         setcookie("user", "Erick Saúl Guzmán Ramos", time() + 3600);
          setcookie("rol", "Root", time() + 3600);
         // // // // // // // //
         return $this->render('login.html.twig', [

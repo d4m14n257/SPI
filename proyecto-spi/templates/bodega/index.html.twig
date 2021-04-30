@@ -2,9 +2,165 @@
 
 {% block title %}{{ page_title }}{% endblock %}
 
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
+{% endblock %}
+
 {% block body %}
 
 <div id="content-wrapper" class="d-flex flex-column">
+
     <h1 class="mx-auto pb-2">{{ page_title }}</h1>
+
+    <div class="row pb-3">
+        <div class="col-12">
+            <button class="btn btn-sm bg-purple float-right" data-toggle="modal" data-target="#NuevaBodega">
+                <i class="fa fa-plus-circle pr-1" aria-hidden="true"></i>Registrar Nueva Bodega
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Registro de Obra -->
+    <div class="modal fade" id="NuevaBodega" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="labelNuevaBodega" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="labelNuevaBodega">Registrar Nueva Bodega</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{ form_start(form) }}
+                    <div class="modal-body">
+                            <div class="row">
+                                {{ form_errors(form) }}
+                            </div>
+                            {{ form_row(form.Nombre) }}
+                            <div class="row">
+                                <div class="col-8">
+                                    {{ form_row(form.Telefono) }} 
+                                </div>
+                                <div class="col-4">
+                                    {{ form_row(form.Usuario) }}
+                                </div>
+                            </div>
+                            {{ form_row(form.Descripcion) }}
+                            <div class="h5 mx-auto">
+                                Ubicación
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    {{ form_row(form.Ubicacion.Calle) }}
+                                </div>
+                                <div class="col-4">
+                                    {{ form_row(form.Ubicacion.Numero) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    {{ form_row(form.Ubicacion.Colonia) }}
+                                </div>
+                                <div class="col-4">
+                                    {{ form_row(form.Ubicacion.Cp) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    {{ form_row(form.Ubicacion.Localidad) }}
+                                </div>
+                                <div class="col-6">
+                                    {{ form_row(form.Ubicacion.Municipio) }}
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        {{ form_row(form.Cancel) }}
+                        {{ form_row(form.save) }}
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {% if Bodegas_Activas is not empty %}
+
+        <table id="TablaBodegas" class="table table-bordered table-hover dataTable dtr-inline">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Bodega</th>
+                    <th>Telefono</th>
+                    <th>Usuario encargado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bodega in Bodegas_Activas %}
+                    <tr>
+                        <td>{{ bodega.getNombre }}</td>
+                        <td>{{ bodega.getTelefono }}</td>
+                        <td>{{ bodega.getUsuario.getNombreCompleto }}</td>
+                        <td>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{ bodega.getIdAlmacen }}"
+                                aria-expanded="false" aria-controls="{{ bodega.getIdAlmacen }}">Detalles</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+    <div class="container pt-5" style="width: 100%;">
+        <div class="pt-5" style="position: relative; height: 100%; ">
+            <div class="h1 text-muted pt-5" style="position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); opacity:0.2;">
+                <p class="pt-5 mx-auto" style="user-select: none;">NO HAY BODEGAS REGISTRADAS</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
 </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('js/form_validations.js') }}"></script>
+
+<script>
+$(document).ready(function() {
+    console.log("Funcionando");
+    
+    $('#NuevaBodega').on('hidden.bs.modal', function(e){
+        $(this).find('[name=new_bodega]')[0].reset();
+    });
+
+    $('#TablaBodegas').DataTable({
+        "paging": true,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "responsive": true,
+        "lengthChange": false, 
+        "autoWidth": false
+    });
+    
+});
+</script>
+
 {% endblock %}
