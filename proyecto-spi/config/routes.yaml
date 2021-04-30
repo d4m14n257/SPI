@@ -1,3 +1,12 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+   path: /home
+   controller: App\Controller\HomeController::index
+
+usuarios:
+  path: /usuario
+  controller: App\Controller\UsuarioController::index
+  methods: [GET]
+
+crearUsuario:
+  path: /usuario-crear
+  controller: App\Controller\UsuarioController::crearUsuario

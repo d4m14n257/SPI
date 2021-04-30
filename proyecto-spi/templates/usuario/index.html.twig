@@ -6,5 +6,49 @@
 
 <div id="content-wrapper" class="d-flex flex-column">
     <h1 class="mx-auto pb-2">{{ page_title }}</h1>
+    
+    <div class="row">
+        <div class="card col-lg-6 mx-auto">
+            <div class="card-header">
+                <h3 class="card-title">Usuarios del sistema</h3>
+                <div class="card-tools">
+                  <a href="{{asset ('usuario-crear')}}" class="btn btn-tool btn-sm">
+                    <i class="fas fa-user-plus"></i>
+                  </a>
+                </div>
+            </div>
+            <div class="card-body table-responsive p-0" style="height: 500px;">
+                <table class="table table-head-fixed text-nowrap">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Rol</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in usuarios %}
+                        <tr>
+                            <td>{{user.nombre}}</td>
+                            <td>{{user.telefono}}</td>
+                            <td>{{user.rol}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    
 </div>
+
+<script>
+  $(function () {
+    $("#usersTable").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#usersTable_wrapper .col-md-6:eq(0)');
+  });
+</script>
 {% endblock %}
