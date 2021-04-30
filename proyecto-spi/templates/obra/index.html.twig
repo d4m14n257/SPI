@@ -57,8 +57,14 @@
                             </div>
                         </div>
                         {{ form_row(form.Descripcion) }}
-                        {{ form_row(form.DependenciaContratos) }}
-                        {{ form_row(form.DependenciaEjecutora) }}
+                        <div class="row">
+                            <div class="col">
+                                {{ form_row(form.DependenciaContratos) }}
+                            </div>
+                            <div class="col">
+                                {{ form_row(form.DependenciaEjecutora) }}
+                            </div>
+                        </div>
                         {{ form_row(form.ContratoProyecto) }}
                         <div class="row mx-auto">
                             <div class="col">
@@ -104,13 +110,13 @@
     {% if Obras_Activas is not empty %}
 
         <table id="TablaObras" class="table table-bordered table-hover dataTable dtr-inline">
-            <thead class="thead-dark">
+            <thead class="thead-dark" style="table-layout: fixed;">
                 <tr>
                     <th>Nombre</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Entrega</th>
+                    <th style="width: 15%">Fecha Inicio</th>
+                    <th style="width: 15%">Fecha Entrega</th>
                     <th>Usuario encargado</th>
-                    <th>Acciones</th>
+                    <th style="width: 10%;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -120,7 +126,7 @@
                         <td>{{ obra.getFechaInicio.format('D-d-m-Y') }}</td>
                         <td>{{ obra.getFechaEntrega.format('D-d-m-Y') }}</td>
                         <td>{{ obra.getUsuario.getNombre }}  {{ obra.getUsuario.getApellidos }}</td>
-                        <td class="text-right pr-5">
+                        <td class="text-center">
                             <a href="{{ path('obr-view-det', { Obra_ID: obra.getIdAlmacen }) }}">
                                 <i class="fa fa-eye"></i>
                                 Detalles
