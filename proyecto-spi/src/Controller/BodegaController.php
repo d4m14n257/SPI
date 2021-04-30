@@ -18,4 +18,8 @@ class BodegaController extends AbstractController
             'page_title' => 'Bodega'
         ]);
     }
+
+    public function addBodega() {
+        
+    }
 }
